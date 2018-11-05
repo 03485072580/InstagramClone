@@ -7,9 +7,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
-import android.widget.Toast;
 
 import com.example.fasih.instagramapplication.R;
 import com.example.fasih.instagramapplication.Utils.Login.LoginActivity;
@@ -96,7 +94,7 @@ public class HomeActivity extends AppCompatActivity {
     private void setUpBottomNavigation() {
         int activity_count = 0;
         navigationView = findViewById(R.id.bottom_nav_viewBar);
-        BottomNavigationViewHelper.setOnNavigationItemSelectedListener(HomeActivity.this, navigationView);
+        BottomNavigationViewHelper.setOnNavigationItemSelectedListener(HomeActivity.this, this, navigationView);
         Menu menu = navigationView.getMenu();
         menu.getItem(activity_count).setChecked(true);
     }

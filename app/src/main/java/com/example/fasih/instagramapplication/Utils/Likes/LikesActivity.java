@@ -1,8 +1,8 @@
 package com.example.fasih.instagramapplication.Utils.Likes;
 
+import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.Menu;
 
 import com.example.fasih.instagramapplication.R;
@@ -19,7 +19,7 @@ public class LikesActivity extends AppCompatActivity {
     private void setUpBottomNavigation() {
         int activity_count=3;
         navigationView = findViewById(R.id.bottom_nav_viewBar);
-        BottomNavigationViewHelper.setOnNavigationItemSelectedListener(this,navigationView);
+        BottomNavigationViewHelper.setOnNavigationItemSelectedListener(this, this, navigationView);
         Menu menu =navigationView.getMenu();
         menu.getItem(activity_count).setChecked(true);
     }

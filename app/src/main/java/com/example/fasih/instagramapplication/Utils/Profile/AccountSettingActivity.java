@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -21,6 +20,8 @@ import com.example.fasih.instagramapplication.Utils.Utils.SectionsPagerStateAdap
 import java.util.ArrayList;
 
 public class AccountSettingActivity extends AppCompatActivity implements ClickRecyclerViewItem {
+    SectionsPagerStateAdapter adapter;
+    ViewPager viewPager;
     private RelativeLayout relLayout;
 
     @Override
@@ -32,8 +33,6 @@ public class AccountSettingActivity extends AppCompatActivity implements ClickRe
         setUpAccountListFragments();
         getIncomingIntent();
     }
-
-    SectionsPagerStateAdapter adapter;
 
     private void setUpAccountListFragments() {
         adapter = new SectionsPagerStateAdapter(getSupportFragmentManager());
@@ -47,12 +46,11 @@ public class AccountSettingActivity extends AppCompatActivity implements ClickRe
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                overridePendingTransition(R.anim.fade_in_nav, R.anim.fade_out_nav);
                 finish();
             }
         });
     }
-
-    ViewPager viewPager;
 
     private void setUpAccountList() {
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
@@ -103,24 +101,6 @@ public class AccountSettingActivity extends AppCompatActivity implements ClickRe
         return 0;
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView textView;
-        ClickRecyclerViewItem item;
-
-        public MyViewHolder(View itemView) {
-            super(itemView);
-            item = AccountSettingActivity.this;
-            textView = itemView.findViewById(R.id.account_settings_row);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    item.onClick(v, getAdapterPosition());
-
-                }
-            });
-        }
-    }
-
     public void getIncomingIntent() {
         try {
             Intent intent = getIntent();
@@ -144,5 +124,23 @@ public class AccountSettingActivity extends AppCompatActivity implements ClickRe
             exc.printStackTrace();
         }
 
+    }
+
+    class MyViewHolder extends RecyclerView.ViewHolder {
+        TextView textView;
+        ClickRecyclerViewItem item;
+
+        public MyViewHolder(View itemView) {
+            super(itemView);
+            item = AccountSettingActivity.this;
+            textView = itemView.findViewById(R.id.account_settings_row);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    item.onClick(v, getAdapterPosition());
+
+                }
+            });
+        }
     }
 }

@@ -16,7 +16,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.fasih.instagramapplication.R;
-import com.example.fasih.instagramapplication.Utils.Models.UserAccountSettings;
 import com.example.fasih.instagramapplication.Utils.Profile.AccountSettingActivity;
 import com.example.fasih.instagramapplication.Utils.Utils.FileDirectorySearch;
 import com.example.fasih.instagramapplication.Utils.Utils.GridImageAdapter;
@@ -82,6 +81,7 @@ public class GalleryFragment extends Fragment {
         cross.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                getActivity().overridePendingTransition(R.anim.fade_in_nav, R.anim.fade_out_nav);
                 getActivity().finish();
             }
         });
@@ -99,8 +99,9 @@ public class GalleryFragment extends Fragment {
                             .putExtra(getString(R.string.return_to_fragment_editprofile),getString(R.string.edit_profile_fragment))
                             .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                     );
-                    getActivity().finish();
                 }
+                getActivity().overridePendingTransition(R.anim.fade_in_nav, R.anim.fade_out_nav);
+                getActivity().finish();
             }
         });
 
@@ -108,7 +109,7 @@ public class GalleryFragment extends Fragment {
 
     public void setupImageGrid(final ArrayList<String> filesPath) {
         GridImageAdapter adapter = new GridImageAdapter(getContext());
-        adapter.setArrayList(filesPath);
+        adapter.setArrayList(filesPath, getString(R.string.GalleryFragment));
         adapter.setGridProgress(gridview_progress);
         gridView.setAdapter(adapter);
         UniversalImageLoader.setImage(filesPath.get(0), gallery_image, gallery_img_progress, "");

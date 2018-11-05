@@ -20,25 +20,21 @@ import java.util.ArrayList;
  */
 
 public class GridImageAdapter extends BaseAdapter {
+    WidgetsHandler widgetsHandler;
     private Context mContext;
     private ProgressBar gridProgress;
+    private ArrayList<String> arrayList;
+
 
     public GridImageAdapter(Context mContext) {
         this.mContext = mContext;
         initGridImages();
     }
 
-
-    private ArrayList arrayList;
-
-
     private void initGridImages() {
         if (!ImageLoader.getInstance().isInited())
             ImageLoader.getInstance().init(new UniversalImageLoader(mContext).getConfig());
     }
-
-
-    WidgetsHandler widgetsHandler;
 
     @Override
     public int getCount() {
@@ -67,14 +63,13 @@ public class GridImageAdapter extends BaseAdapter {
             Object tag = convertView.getTag();
             widgetsHandler = (WidgetsHandler) tag;
         }
-        UniversalImageLoader.setImage((String) arrayList.get(position), widgetsHandler.profile_grid_image,
-                gridProgress, "");
-
+        UniversalImageLoader.setImage(arrayList.get(position), widgetsHandler.profile_grid_image, gridProgress, "");
         return convertView;
     }
 
-    public void setArrayList(ArrayList arrayList) {
+    public void setArrayList(ArrayList arrayList, String fromActivity) {
         this.arrayList = arrayList;
+
     }
 
     public void setGridProgress(ProgressBar gridProgress) {
@@ -84,7 +79,7 @@ public class GridImageAdapter extends BaseAdapter {
     private class WidgetsHandler {
         ImageView profile_grid_image;
 
-        public WidgetsHandler(View convertView) {
+        private WidgetsHandler(View convertView) {
             profile_grid_image = convertView.findViewById(R.id.profile_grid_image);
         }
     }

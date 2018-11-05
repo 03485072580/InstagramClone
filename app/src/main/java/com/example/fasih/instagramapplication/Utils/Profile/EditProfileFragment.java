@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,8 +22,6 @@ import com.example.fasih.instagramapplication.Utils.Models.MessageEvent;
 import com.example.fasih.instagramapplication.Utils.Models.UserSettings;
 import com.example.fasih.instagramapplication.Utils.Share.ShareActivity;
 import com.example.fasih.instagramapplication.Utils.Utils.FirebaseMethods;
-import com.example.fasih.instagramapplication.Utils.Utils.ImageManager;
-import com.example.fasih.instagramapplication.Utils.Utils.StringManipulation;
 import com.example.fasih.instagramapplication.Utils.Utils.UniversalImageLoader;
 import com.example.fasih.instagramapplication.Utils.Utils.UrlManager;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -50,6 +47,20 @@ import org.greenrobot.eventbus.Subscribe;
  */
 
 public class EditProfileFragment extends Fragment {
+    private ImageView profile_photo;
+    private Context mContext;
+    private ProgressBar progressBar;
+    private ImageView backArrow, checkmark;
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference myRef;
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener authStateListener;
+    private EditText username, display_name, website, description, email, phoneNumber;
+    private String email1;
+    private TextView update_profile_photo;
+    private FirebaseMethods firebaseMethods;
+    private UserSettings settings;
+
     @Subscribe
     public void onEventReceive(MessageEvent messageEvent) {
         AuthCredential credential = EmailAuthProvider.getCredential(mAuth.getCurrentUser().getEmail(), messageEvent.getPassword());
@@ -99,18 +110,6 @@ public class EditProfileFragment extends Fragment {
         }catch(NullPointerException exc){exc.printStackTrace();}
     }
 
-    private ImageView profile_photo;
-    private Context mContext;
-    private ProgressBar progressBar;
-    private ImageView backArrow, checkmark;
-    private FirebaseDatabase firebaseDatabase;
-    private DatabaseReference myRef;
-    private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener authStateListener;
-    private EditText username, display_name, website, description, email, phoneNumber;
-    private String email1;
-    private TextView update_profile_photo;
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -127,10 +126,12 @@ public class EditProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if(((AccountSettingActivity)getActivity()).getTask()==0){
+                    getActivity().overridePendingTransition(R.anim.fade_in_nav, R.anim.fade_out_nav);
                     getActivity().finish();
                 }
                 else{
                     //finish 1=AccountActivity
+                    getActivity().overridePendingTransition(R.anim.fade_in_nav, R.anim.fade_out_nav);
                     getActivity().finish();
                 }
             }
@@ -176,9 +177,6 @@ public class EditProfileFragment extends Fragment {
             }
         });
     }
-
-    private FirebaseMethods firebaseMethods;
-    private UserSettings settings;
 
     private void setupFirebase() {
         mAuth = FirebaseAuth.getInstance();

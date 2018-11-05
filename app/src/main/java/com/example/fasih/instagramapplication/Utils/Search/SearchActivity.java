@@ -20,7 +20,7 @@ public class SearchActivity extends AppCompatActivity {
     private void setUpBottomNavigation() {
         int activity_count = 1;
         navigationView = findViewById(R.id.bottom_nav_viewBar);
-        BottomNavigationViewHelper.setOnNavigationItemSelectedListener(this, navigationView);
+        BottomNavigationViewHelper.setOnNavigationItemSelectedListener(this, this, navigationView);
         navigationView.getMenu().getItem(activity_count).setChecked(true);
     }
 }
