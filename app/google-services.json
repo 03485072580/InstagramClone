@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1078442882056",
+    "firebase_url": "https://android-studio-projects-52f7e.firebaseio.com",
+    "project_id": "android-studio-projects-52f7e",
+    "storage_bucket": "android-studio-projects-52f7e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1078442882056:android:d5a326887081750f",
+        "android_client_info": {
+          "package_name": "com.example.fasih.instagramapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1078442882056-li6mdgqbs394rlepoi1hvcj3or2o0a47.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fasih.instagramapplication",
+            "certificate_hash": "6f01406af3c6e543cd7c2e7927a9bb51b3c04704"
+          }
+        },
+        {
+          "client_id": "1078442882056-38h3ql6pqulvs2ld6ojrfqenvhlf2ciu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByATKeVxw5JYiQob_B3OBtzflI6aWanBo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1078442882056-38h3ql6pqulvs2ld6ojrfqenvhlf2ciu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

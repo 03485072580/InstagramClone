@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">InstagramApplication</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="firebase_error_msg">Username Or Password is not Valid</string>
+    <string name="db_users_node">users</string>
+    <string name="db_user_account_settings">user_account_settings</string>
+    <string name="fragment_profile">profileFragment</string>
+    <string name="calling_activity">calling_activity</string>
+    <string name="profile_activity">profile_activity</string>
+    <string name="db_field_username">username</string>
+    <string name="dialog_confirm_password">dialog_confirm_password</string>
+    <string name="db_field_email">email</string>
+    <string name="db_field_display_name">display_name</string>
+    <string name="db_field_website">website</string>
+    <string name="db_field_description">description</string>
+    <string name="db_field_phone_number">phone_number</string>
+    <string name="fragment_gallery">GALLERY</string>
+    <string name="fragment_photo">PHOTO</string>
+    <string-array name="spinner_entries">
+        <item>Entry1</item>
+        <item>Entry2</item>
+        <item>Entry3</item>
+        <item>Entry4</item>
+        <item>Entry5</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="next">Next</string>
+    <string name="selected_gallery_image">Selected Image</string>
+    <string name="share">Share</string>
+    <string name="db_photo_node">photo</string>
+    <string name="db_user_photos_node">user_photos</string>
+    <string name="new_photo">new_photo</string>
+    <string name="profile_photo">profile_photo</string>
+    <string name="wait_dialog">Please Wait...</string>
+    <string name="return_to_fragment_editprofile">return_to_fragment_editprofile</string>
+    <string name="edit_profile_fragment">edit_profile_fragment</string>
+    <string name="dialog_upload_image">dialog_upload_image</string>
+    <string name="from_fragment_photo">from_fragment_photo</string>
+    <string name="camera_bitmap">bitmap</string>
+</resources>
