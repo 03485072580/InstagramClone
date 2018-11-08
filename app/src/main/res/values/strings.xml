@@ -42,4 +42,6 @@
     <string name="camera_bitmap">bitmap</string>
     <string name="GalleryFragment">GalleryFragment</string>
     <string name="ProfileFragment">ProfileFragment</string>
+    <string name="heart">heart</string>
+    <string name="view_post_fragment">ViewPost</string>
 </resources>

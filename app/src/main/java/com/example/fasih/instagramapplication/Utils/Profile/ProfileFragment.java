@@ -1,5 +1,6 @@
 package com.example.fasih.instagramapplication.Utils.Profile;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -43,6 +45,7 @@ import java.util.ArrayList;
 
 public class ProfileFragment extends Fragment {
     private static String userID;
+    private OnGridImageSelectedListener onGridImageSelectedListener;
     private BottomNavigationView navigationView;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
@@ -56,6 +59,7 @@ public class ProfileFragment extends Fragment {
     private GridView gridView;
     private TextView tvPosts, tvFollowers, tvFollowing, textEditProfile, display_name, description, website;
     private FirebaseMethods firebaseMethods;
+    private ArrayList<Photo> photoList;
 
     @Nullable
     @Override
@@ -98,6 +102,13 @@ public class ProfileFragment extends Fragment {
                 getActivity().startActivity(intent);
             }
         });
+
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                onGridImageSelectedListener.onGridImageSelected(photoList.get(position), 0);
+            }
+        });
     }
 
     private void setUpImageGrid() {
@@ -108,13 +119,13 @@ public class ProfileFragment extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot photos_node : dataSnapshot.getChildren()) {
                     Photo photo = photos_node.getValue(Photo.class);
-                    String path_image = photo.getImage_path();
-                    arrayListUrls.add(path_image);
+                    arrayListUrls.add(photo.getImage_path());
+                    photoList.add(photo);
+
                 }
                 adapter.setArrayList(arrayListUrls, getString(R.string.ProfileFragment));
                 adapter.setGridProgress(profile_gridview_progressbar);
                 gridView.setAdapter(adapter);
-
             }
 
             @Override
@@ -149,6 +160,16 @@ public class ProfileFragment extends Fragment {
         BottomNavigationViewHelper.setOnNavigationItemSelectedListener(getActivity(), getActivity(), navigationView);
         Menu menu = navigationView.getMenu();
         menu.getItem(activity_count).setChecked(true);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            onGridImageSelectedListener = (OnGridImageSelectedListener) context;
+        } catch (ClassCastException exc) {
+            exc.printStackTrace();
+        }
     }
 
     private void setupFirebase() {
@@ -208,5 +229,9 @@ public class ProfileFragment extends Fragment {
         if (mAuth != null) {
             mAuth.removeAuthStateListener(authStateListener);
         }
+    }
+
+    public interface OnGridImageSelectedListener {
+        void onGridImageSelected(Photo photo, int Activity_Number);
     }
 }
